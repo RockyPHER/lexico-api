@@ -7,7 +7,7 @@ export async function GetWords(res: Response, req: Request) {
 }
 
 export async function AddWord(res: Response, req: Request) {
-    console.log("new word add");
-    const { name, class, syllables } = req.body;
-    const word = await AddWordService({ name, class, syllables });
+    const content = req.body;
+    const word = await AddWordService(content);
+    res.json(word);
 }
