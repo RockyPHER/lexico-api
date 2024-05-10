@@ -5,6 +5,8 @@ export async function GetWordsService() {
     return await Word.find();
 }
 
-export async function AddWordService(word: AddWordDto) {
-    return await new Word(word).save();
+export async function AddWordService(input: AddWordDto) {
+    const newWord = new Word(input);
+    const saveWord = await newWord.save();
+    return saveWord;
 }

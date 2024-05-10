@@ -6,7 +6,7 @@ const wordSchema = new mongoose.Schema({
         required: true,
     },
     syllables: [{ type: String, required: false }],
-    class: [{
+    grammar_class: [{
         type: String,
         required: true,
     }],
