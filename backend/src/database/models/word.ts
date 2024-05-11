@@ -6,13 +6,15 @@ const wordSchema = new mongoose.Schema({
         required: true,
     },
     syllables: [{ type: String, required: false }],
-    grammar_class: [{
-        type: String,
-        required: true,
-    }],
-    definition: [{
-        type: String,
-        required: false,
+    meanings: [{
+        grammar_class: {
+            type: String,
+            required: true
+        },
+        definition: [{
+            type: String,
+            required: false
+        }]
     }],
     synonym: [{
         type: String,
@@ -34,7 +36,14 @@ const wordSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-});
+},
+    {
+        query: {
+            byName(name) {
+                return this.where({ name: new RegExp(name, 'i') });
+            }
+        }
+    });
 
 const Word = mongoose.model("Word", wordSchema);
 
