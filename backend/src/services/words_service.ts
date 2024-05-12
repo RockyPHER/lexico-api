@@ -18,3 +18,7 @@ export async function AddWord(input: AddWordDto) {
 export async function DeleteWord(id: String) {
     return await Word.findByIdAndDelete(id);
 }
+
+export async function UpdateWord(id: String, word: AddWordDto) {
+    return await Word.findByIdAndUpdate(id, word);
+}

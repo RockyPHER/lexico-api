@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AddWord, DeleteWord, GetWord, GetWords } from "../services/words_service";
+import { AddWord, DeleteWord, GetWord, GetWords, UpdateWord } from "../services/words_service";
 
 
 export async function GetWordController(req: Request, res: Response) {
@@ -21,7 +21,14 @@ export async function AddWordController(req: Request, res: Response) {
 }
 
 export async function DeleteWordController(req: Request, res: Response) {
-    const name = req.params.id;
-    const word = await DeleteWord(name);
+    const id = req.params.id;
+    const word = await DeleteWord(id);
+    res.json(word);
+}
+
+export async function UpdateWordController(req: Request, res: Response) {
+    const id = req.params.id;
+    const newWord = req.body;
+    const word = await UpdateWord(id, newWord);
     res.json(word);
 }
