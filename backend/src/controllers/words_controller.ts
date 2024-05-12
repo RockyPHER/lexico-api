@@ -11,7 +11,15 @@ export async function GetWordController(req: Request, res: Response) {
 
 export async function GetWordsController(req: Request, res: Response) {
     const words = await GetWords();
-    res.json(words);
+    try {
+        if (!words) {
+            throw new Error("No input provided")
+        }
+
+        res.json(words);
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 export async function AddWordController(req: Request, res: Response) {
